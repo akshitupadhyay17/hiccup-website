@@ -151,21 +151,25 @@
             background: linear-gradient(rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.6)), url("img/portfolio/IMG_0500_2.JPG") center/cover no-repeat;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 20%, rgba(198, 156, 109, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(229, 210, 176, 0.12) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 60%, rgba(198, 156, 109, 0.08) 0%, transparent 50%);
-            animation: float 20s infinite linear;
-        }
+        /* .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(198, 156, 109, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(229, 210, 176, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(198, 156, 109, 0.08) 0%, transparent 50%),
+        linear-gradient(to bottom, rgba(10, 10, 10, 0) 70%, rgba(10, 10, 10, 0.85) 100%); 
+    animation: float 20s infinite linear;
+    z-index: 1;
+} */
+
 
         /* Media Agency Specific Elements */
-        .hero::after {
+        /* .hero::after {
             content: '';
             position: absolute;
             top: 0;
@@ -176,7 +180,7 @@
                 linear-gradient(45deg, transparent 40%, rgba(198, 156, 109, 0.03) 50%, transparent 60%),
                 linear-gradient(-45deg, transparent 40%, rgba(229, 210, 176, 0.02) 50%, transparent 60%);
             animation: shimmer 8s infinite ease-in-out;
-        }
+        } */
 
         @keyframes shimmer {
             0%, 100% { opacity: 0.3; }
@@ -199,18 +203,27 @@
 
 
         .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #e5d2b0 0%, #c69c6d 30%, #b8956a 60%, #d4c19b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-            font-weight: 700;
-            line-height: 1.1;
-            filter: brightness(1.2) contrast(1.1);
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #e5d2b0 0%, #c69c6d 30%, #b8956a 60%, #d4c19b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    font-weight: 700;
+    line-height: 1.1;
+    filter: brightness(1.2) contrast(1.1);
+    animation: dissolveIn 2s ease-in-out 0.3s both; /* More graceful fade */
+}
+@keyframes dissolveIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
-        }
 
         .hero p {
             font-size: 1.4rem;
@@ -220,9 +233,10 @@
             color: #e5d2b0;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
             line-height: 1.6;
+            animation: dissolveIn 2s ease-in-out 0.5s both;
         }
 
-        .contact-btn {
+        .contact-btn2 {
             display: inline-block;
             padding: 15px 40px;
             background: linear-gradient(135deg, #c69c6d, #e5d2b0);
@@ -236,9 +250,10 @@
             box-shadow: 0 8px 25px rgba(198, 156, 109, 0.3);
             position: relative;
             overflow: hidden;
+            animation: dissolveIn 2s ease-in-out 0.5s both;
         }
 
-        .contact-btn::before {
+        .contact-btn2::before {
             content: '';
             position: absolute;
             top: 0;
@@ -249,18 +264,18 @@
             transition: left 0.5s ease;
         }
 
-        .contact-btn:hover::before {
+        .contact-btn2:hover::before {
             left: 100%;
         }
 
-        .contact-btn:hover {
+        .contact-btn2:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(198, 156, 109, 0.4);
         }
         /* Client Logos Section - Integrated into Hero */
         .hero-clients {
             margin-top: 3rem;
-            animation: fadeInUp 1s ease-out 0.5s both;
+            animation: dissolveIn 2s ease-in-out 1.6s both;
         }
 
         .hero-clients-header {
@@ -389,7 +404,7 @@
         /* Services Section */
         .services {
             padding: 6rem 2rem;
-            background: #111111;
+            background: #0a0a0a;
             position: relative;
         }
 
@@ -1359,7 +1374,7 @@
         <div class="hero-content">
             <h1>Start Creating Your Story with Hiccups Media</h1>
             <p>We turn creative sparks into bold, impactful content that cuts through the noise and sticks in your memory. From documentaries to digital films, we make every hiccup count.</p>
-            <a href="#contact" class="contact-btn">Let's Create Together</a>
+            <a href="#contact" class="contact-btn2">Let's Create Together</a>
             
             <!-- Integrated Client Logos -->
             <div class="hero-clients">
@@ -1524,7 +1539,7 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <div class="container">
-            <h2 class="section-title fade-in">Our Recent Work</h2>
+            <h2 class="section-title fade-in">Our Work</h2>
             <div class="portfolio-grid">
                 <a href="brand-campaigns.html" class="portfolio-item fade-in">
                     <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Campaign">
@@ -1601,7 +1616,7 @@
                         <div class="testimonial-avatar">AR</div>
                         <div class="testimonial-info">
                             <h4>Anubhav Rawat</h4>
-                            <p>Hashvan Resort</p>
+                            <p>Hushvan Resort</p>
                         </div>
                         <div class="testimonial-rating">
                             <span class="star">★</span>
@@ -1854,29 +1869,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
-        });
-
-        // Add typing effect to hero title
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // Initialize typing effect after page load
-        window.addEventListener('load', function() {
-            const heroTitle = document.querySelector('.hero h1');
-            if (heroTitle) {
-                const originalText = heroTitle.textContent;
-                typeWriter(heroTitle, originalText, 50);
-            }
         });
 
         // Add hover effects to service cards
