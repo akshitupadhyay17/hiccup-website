@@ -47,12 +47,12 @@ body {
 }
 
 .nav {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     padding: 0 2rem;
-    gap: 2rem;
+    position: relative;
 }
 
 .nav-links {
@@ -62,10 +62,12 @@ body {
     gap: 1.2rem;
     list-style: none;
     padding: 0;
-    margin: 0 auto;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     width: fit-content;
 }
-
 .nav-links::-webkit-scrollbar {
     display: none;
 }
@@ -121,12 +123,12 @@ body {
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
-    box-shadow: 0 4px 15px rgba(198, 156, 109, 0.4);
+    box-shadow: 0 2px 8px rgba(198, 156, 109, 0.2);
 }
 
 .contact-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(198, 156, 109, 0.6);
+    box-shadow: 0 4px 12px rgba(198, 156, 109, 0.3);
     background: linear-gradient(135deg, #e1b97c, #f3d1a3);
 }
 
