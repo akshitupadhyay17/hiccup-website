@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
@@ -352,7 +352,7 @@
                             <div class="contact-icon">📞</div>
                             <div class="contact-detail-content">
                                 <h3>PHONE</h3>
-                                <p><a href="tel:+919119060984">+91 9119060984</a></p>
+                                <p><a href="tel:+911234567890">+91 9119060984</a></p>
                             </div>
                         </div>
                         
@@ -396,6 +396,8 @@
                             
                             <div class="form-group">
                                 <label for="service">INTERESTED IN</label>
+                                
+                                <!-- Desktop Service Cards -->
                                 <div class="service-cards">
                                     <label class="service-card">
                                         <input type="checkbox" name="service[]" value="branded-content">
@@ -430,6 +432,20 @@
                                         <span>SOCIAL MEDIA</span>
                                     </label>
                                 </div>
+                                
+                                <!-- Mobile Service Select -->
+                                <select class="mobile-service-select" name="mobile-service" id="mobile-service">
+                                    <option value="">Select a service...</option>
+                                    <option value="branded-content">Branded Content</option>
+                                    <option value="documentaries">Documentary</option>
+                                    <option value="digital-films">Digital Films</option>
+                                    <option value="creative-strategy">Creative Strategy</option>
+                                    <option value="commercial-ads">Commercial Ads</option>
+                                    <option value="music-videos">Music Videos</option>
+                                    <option value="event-coverage">Event Coverage</option>
+                                    <option value="social-media">Social Media</option>
+                                    <option value="multiple">Multiple Services</option>
+                                </select>
                             </div>
                             
                             <div class="form-group">

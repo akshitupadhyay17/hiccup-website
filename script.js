@@ -91,11 +91,21 @@ document.querySelectorAll('.service-card').forEach(card => {
 document.querySelector('.contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Get selected services
+    // Get selected services (desktop checkboxes)
     const selectedServices = [];
     document.querySelectorAll('input[name="service[]"]:checked').forEach(checkbox => {
         selectedServices.push(checkbox.value);
     });
+    
+    // Get mobile service selection
+    const mobileService = document.getElementById('mobile-service');
+    if (mobileService && mobileService.value && mobileService.value !== '') {
+        if (mobileService.value === 'multiple') {
+            selectedServices.push('Multiple Services');
+        } else {
+            selectedServices.push(mobileService.value);
+        }
+    }
     
     // Form data
     const formData = {

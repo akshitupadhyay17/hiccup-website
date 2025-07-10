@@ -934,6 +934,11 @@ body {
     font-weight: bold;
 }
 
+/* Hide mobile service select on desktop */
+.mobile-service-select {
+    display: none;
+}
+
 .submit-btn {
     background: linear-gradient(135deg, #c69c6d, #e8c28d);
     color: #1a1a1a;
