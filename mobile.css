@@ -302,6 +302,7 @@
         height: 45px;
         padding: 8px;
         margin: 0 6px;
+        animation-duration: 2s !important;
     }
     
     /* Services */
@@ -610,6 +611,7 @@
         height: 40px;
         padding: 6px;
         margin: 0 4px;
+        animation-duration: 2s !important;
     }
     
     .services-grid {
