@@ -117,17 +117,21 @@ const mobileNav = document.getElementById('mobileNav');
 const mobileNavOverlay = document.getElementById('mobileNavOverlay');
 
 function toggleMobileNav() {
-    if (mobileNav.classList.contains('open')) {
-        mobileNav.classList.remove('open');
-        document.body.style.overflow = '';
-    } else {
-        mobileNav.classList.add('open');
+    hamburger.classList.toggle('active');
+    mobileNav.classList.toggle('active');
+    mobileNavOverlay.classList.toggle('active');
+    
+    if (mobileNav.classList.contains('active')) {
         document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
     }
 }
 
 function closeMobileNav() {
-    mobileNav.classList.remove('open');
+    hamburger.classList.remove('active');
+    mobileNav.classList.remove('active');
+    mobileNavOverlay.classList.remove('active');
     document.body.style.overflow = '';
 }
 
@@ -143,11 +147,18 @@ if (hamburger && mobileNav) {
     if (mobileNavOverlay) {
         mobileNavOverlay.addEventListener('click', closeMobileNav);
     }
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+            closeMobileNav();
+        }
+    });
 }
 
 // ===== HAMBURGER DISPLAY HANDLER =====
 function handleHamburgerDisplay() {
-    if (window.innerWidth <= 480) {
+    if (window.innerWidth <= 768) {
         hamburger.style.display = 'flex';
     } else {
         hamburger.style.display = 'none';

@@ -68,6 +68,7 @@ body {
     transform: translateX(-50%);
     width: fit-content;
 }
+
 .nav-links::-webkit-scrollbar {
     display: none;
 }
