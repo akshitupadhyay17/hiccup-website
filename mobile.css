@@ -826,7 +826,9 @@ html {
 }
 
 @media (max-width: 768px) {
-    .filter-btn:hover {
+    .filter-btn:hover,
+    .filter-btn:active,
+    .filter-btn:focus {
         background: rgba(198, 156, 109, 0.1) !important;
         color: #e5d2b0 !important;
         border-color: rgba(198, 156, 109, 0.3) !important;
@@ -839,8 +841,15 @@ html {
 }
 
 @media (max-width: 768px) {
-    .footer-section a[href^='tel:'] {
+    .footer-section a,
+    .footer a {
+        color: inherit !important;
+        -webkit-text-fill-color: inherit !important;
+    }
+    .footer-section a[href^='tel:'],
+    .footer a[href^='tel:'] {
         color: #e5d2b0 !important;
+        -webkit-text-fill-color: #e5d2b0 !important;
         text-decoration: none !important;
     }
 }
