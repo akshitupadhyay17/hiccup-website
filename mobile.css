@@ -824,3 +824,23 @@ html {
         }
     }
 }
+
+@media (max-width: 768px) {
+    .filter-btn:hover {
+        background: rgba(198, 156, 109, 0.1) !important;
+        color: #e5d2b0 !important;
+        border-color: rgba(198, 156, 109, 0.3) !important;
+    }
+    .filter-btn.active {
+        background: linear-gradient(135deg, #c69c6d, #e8c28d) !important;
+        color: #1a1a1a !important;
+        border-color: #c69c6d !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-section a[href^='tel:'] {
+        color: #e5d2b0 !important;
+        text-decoration: none !important;
+    }
+}
