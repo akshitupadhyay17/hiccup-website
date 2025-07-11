@@ -650,10 +650,12 @@
         height: 34px;
     }
     
-    .hero h1 {
-        font-size: 1.8rem;
-        line-height: 1.1;
-        padding: 0 0.5rem;
+    .hero h1,
+    .services h2,
+    .about h2,
+    .about-text h2,
+    .testimonials h2 {
+        font-size: 1.8rem !important;
     }
     
     .hero p {
@@ -716,10 +718,12 @@
 
 @media (max-width: 375px) {
     /* Extra small mobile adjustments */
-    .hero h1 {
-        font-size: 1.6rem;
-        line-height: 1.1;
-        padding: 0 0.3rem;
+    .hero h1,
+    .services h2,
+    .about h2,
+    .about-text h2,
+    .testimonials h2 {
+        font-size: 1.6rem !important;
     }
     
     .hero p {
