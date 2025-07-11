@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Hiccups Media</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile.css">
+    <style>
+        /* Portfolio specific styles */
+        .portfolio-hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.9)), url("img/portfolio/IMG_0500_2.JPG") center/cover no-repeat;
+            padding: 5.5rem 1rem 1.5rem 1rem; /* top padding for nav */
+        }
+
+        .portfolio-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #e5d2b0 0%, #c69c6d 30%, #b8956a 60%, #d4c19b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .portfolio-hero p {
+            font-size: 1.2rem;
+            color: #e5d2b0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-categories {
+            padding: 4rem 2rem;
+            background: #0a0a0a;
+            margin-top: 0.5rem;
+        }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(198, 156, 109, 0.1);
+            border: 1px solid rgba(198, 156, 109, 0.3);
+            border-radius: 25px;
+            color: #e5d2b0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: linear-gradient(135deg, #c69c6d, #e8c28d);
+            color: #1a1a1a;
+            border-color: #c69c6d;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-top: 0.5rem;
+        }
+
+        .portfolio-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(198, 156, 109, 0.2);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(198, 156, 109, 0.3);
+            border-color: rgba(198, 156, 109, 0.5);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: none;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.3rem;
+            color: #e5d2b0;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .portfolio-content p {
+            color: #cccccc;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(198, 156, 109, 0.2);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #e5d2b0;
+            border: 1px solid rgba(198, 156, 109, 0.3);
+        }
+
+        .back-to-home {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: linear-gradient(135deg, #c69c6d, #e8c28d);
+            color: #1a1a1a;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(198, 156, 109, 0.3);
+        }
+
+        .back-to-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(198, 156, 109, 0.4);
+        }
+
+        /* New styles for portfolio sections */
+        .portfolio-section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #e5d2b0;
+            text-align: center;
+        }
+
+        .video-card {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .video-card .yt-player {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-card .video-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 5px 10px;
+            z-index: 10;
+        }
+
+        .video-card .video-controls button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .video-card .video-controls button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .photo-card {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .photo-card .photo-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .photo-card .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .aspect-16-9 {
+            aspect-ratio: 16/9;
+            height: auto;
+        }
+
+        .aspect-9-16 {
+            aspect-ratio: 9/16;
+            height: auto;
+        }
+
+        .aspect-1-1 {
+            aspect-ratio: 1/1;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .portfolio-hero p {
+                font-size: 1rem;
+            }
+
+            .portfolio-categories {
+                padding: 2rem 1rem;
+            }
+
+            .category-filter {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .video-container {
+                height: 200px;
+            }
+
+            .back-to-home {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .portfolio-section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html#home" class="logo">
+                <img src="img/logos/hiccup-logo-wobg.png" alt="Hiccups Media Logo" class="logo-img">
+                <img src="img/logos/hiccup-logo-text.png" alt="Hiccups Media Text" class="logo-text-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <a href="index.html#contact" class="contact-btn">Get Started</a>
+            <button class="hamburger" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+        <nav class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-cta">
+                <a href="index.html#contact" class="contact-btn">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Portfolio Hero -->
+    <section class="portfolio-hero">
+        <div>
+            <h1>Our Portfolio</h1>
+            <p>Explore our creative work across weddings, music, social media, food, brands, real estate, events, and documentaries. Each project tells a unique story that resonates with audiences.</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Categories -->
+    <section class="portfolio-categories">
+        <div class="container">
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">All Projects</button>
+                <button class="filter-btn" data-category="weddings">Weddings</button>
+                <button class="filter-btn" data-category="music">Music Videos & Covers</button>
+                <button class="filter-btn" data-category="social">Social Media Content</button>
+                <button class="filter-btn" data-category="food">Food & Beverage</button>
+                <button class="filter-btn" data-category="brand">Brand Management</button>
+                <button class="filter-btn" data-category="realestate">Real Estate</button>
+                <button class="filter-btn" data-category="corporate">Corporate Events</button>
+                <button class="filter-btn" data-category="documentaries">Documentaries</button>
+                <button class="filter-btn" data-category="writing">Creative Writing</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Weddings (6 cards) -->
+                <div class="portfolio-item" data-category="weddings">
+                    <div class="video-container aspect-16-9">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/rlaUfHXXA5s" title="Tungnath Series Trailer || Sukoon- Ek Ehsaas || Cinematic Trailer of Tungnath || The Travel Vlogger" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="weddings">
+                    <div class="video-container aspect-16-9">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/rPnAhVkUXRc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="weddings">
+                    <div class="video-container aspect-16-9">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/uqX3ytsuloI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="weddings">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/DSC_0247.JPG" alt="Wedding Film 4" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="weddings">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/DSC_0152 2.JPG" alt="Wedding Film 5" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="weddings">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Wedding Reel 6" />
+                    </div>
+                </div>
+                <!-- Music Videos & Covers (6) -->
+                <div class="portfolio-item" data-category="music">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Music Video 1" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="music">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Music Video 2" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="music">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Music Video 3" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="music">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Music Video 4" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="music">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Music Video 5" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="music">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Music Video 6" />
+                    </div>
+                </div>
+                <!-- Social Media Content (9) -->
+                <div class="portfolio-item" data-category="social">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Social Reel 1" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="social">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Social Reel 2" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="social">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Social Reel 3" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="social">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Social Reel 4" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="social">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Social Reel 5" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="social">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Social Reel 6" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="social">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Social Reel 7" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="social">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Social Reel 8" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="social">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Social Reel 9" />
+                    </div>
+                </div>
+                <!-- Food & Beverage (6) -->
+                <div class="portfolio-item" data-category="food">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Food Reel 1" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="food">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Food Reel 2" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="food">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Food Reel 3" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="food">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Food Reel 4" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="food">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Food Reel 5" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="food">
+                    <div class="photo-container aspect-9-16">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Food Reel 6" />
+                    </div>
+                </div>
+                <!-- Brand Management (12) -->
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 1" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 2" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 3" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 4" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 5" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 6" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 7" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 8" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 9" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 10" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 11" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Brand Photo 12" />
+                    </div>
+                </div>
+                <!-- Real Estate (3) -->
+                <div class="portfolio-item" data-category="realestate">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Real Estate 1" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="realestate">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Real Estate 2" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="realestate">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Real Estate 3" />
+                    </div>
+                </div>
+                <!-- Corporate Events (3) -->
+                <div class="portfolio-item" data-category="corporate">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Corporate Event 1" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="corporate">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Corporate Event 2" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="corporate">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Corporate Event 3" />
+                    </div>
+                </div>
+                <!-- Documentaries (3) -->
+                <div class="portfolio-item" data-category="documentaries">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Documentary 1" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="documentaries">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Documentary 2" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="documentaries">
+                    <div class="photo-container aspect-16-9">
+                        <img src="img/portfolio/IMG_9685.JPG" alt="Documentary 3" />
+                    </div>
+                </div>
+                <!-- Creative Writing (3) -->
+                <div class="portfolio-item" data-category="writing">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Creative Writing 1" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="writing">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Creative Writing 2" />
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="writing">
+                    <div class="photo-container aspect-1-1">
+                        <img src="img/portfolio/20211019173119__MG_8148.JPG" alt="Creative Writing 3" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    // Portfolio filtering functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        function activateFilter(category) {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            const btn = Array.from(filterBtns).find(b => b.getAttribute('data-category') === category);
+            if (btn) btn.classList.add('active');
+            portfolioItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                    item.style.animation = 'fadeIn 0.5s ease-in';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                activateFilter(this.getAttribute('data-category'));
+            });
+        });
+
+        // Activate filter based on hash in URL
+        const hash = window.location.hash.replace('#', '');
+        const validCategories = [
+            'weddings','music','social','food','brand','realestate','corporate','documentaries','writing'
+        ];
+        if (hash && validCategories.includes(hash)) {
+            activateFilter(hash);
+            // Optionally scroll to the filter bar for better UX
+            // Always scroll to top instead of filter bar
+            window.scrollTo({ top: 0, behavior: 'auto' });
+        } else {
+            activateFilter('all');
+        }
+    });
+    </script>
+</body>
+</html> 
