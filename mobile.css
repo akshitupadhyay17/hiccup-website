@@ -853,3 +853,14 @@ html {
         text-decoration: none !important;
     }
 }
+
+@media (max-width: 768px) {
+    .footer .social-links a {
+        color: #e5d2b0 !important;
+        background: rgba(198, 156, 109, 0.2) !important;
+    }
+    .footer .social-links a:hover {
+        background: linear-gradient(135deg, #c69c6d, #e5d2b0) !important;
+        color: #1a1a1a !important;
+    }
+}
