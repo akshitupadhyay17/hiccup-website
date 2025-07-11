@@ -283,24 +283,107 @@
                 font-size: 2rem;
             }
         }
+        /* Remove conflicting mobile styles for navbar and card dimensions. Only keep minimal mobile tweaks for hero and filter bar/buttons. */
+        @media (max-width: 600px) {
+            .portfolio-hero {
+                padding-top: 6rem;
+                min-height: 30vh;
+            }
+            .portfolio-hero h1 {
+                font-size: 2rem;
+            }
+            .portfolio-hero p {
+                font-size: 0.95rem;
+            }
+            .portfolio-categories {
+                padding: 1.5rem 0.5rem;
+            }
+            .category-filter {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            .filter-btn {
+                padding: 0.7rem 1.1rem;
+                font-size: 1rem;
+                min-width: 120px;
+                margin-bottom: 0.3rem;
+                border-radius: 22px;
+            }
+            .portfolio-item {
+                width: 100%;
+                max-width: 100vw;
+                margin: 0 auto 1.2rem auto;
+                /* Remove any fixed height, let aspect-ratio containers control height */
+                height: auto !important;
+                padding: 0;
+            }
+            .video-container,
+            .photo-container {
+                width: 100%;
+                max-width: 100vw;
+                height: auto;
+                aspect-ratio: unset;
+                display: block;
+                overflow: hidden;
+            }
+            .aspect-16-9 {
+                aspect-ratio: 16/9;
+                width: 100%;
+                height: auto;
+                min-height: 0;
+            }
+            .aspect-9-16 {
+                aspect-ratio: 9/16;
+                width: 100%;
+                height: auto;
+                min-height: 0;
+            }
+            .aspect-1-1 {
+                aspect-ratio: 1/1;
+                width: 100%;
+                height: auto;
+                min-height: 0;
+            }
+            .video-container iframe,
+            .photo-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                border-radius: 12px;
+            }
+        }
+        /* Prevent horizontal scroll on all devices */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        /* Improve touch targets for filter buttons */
+        .filter-btn {
+            min-height: 44px;
+            min-width: 44px;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <a href="index.html#home" class="logo">
+            <a href="#home" class="logo">
                 <img src="img/logos/hiccup-logo-wobg.png" alt="Hiccups Media Logo" class="logo-img">
                 <img src="img/logos/hiccup-logo-text.png" alt="Hiccups Media Text" class="logo-text-img">
             </a>
             <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="index.html#about">About</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="index.html#contact" class="contact-btn">Get Started</a>
+            <a href="#contact" class="contact-btn">Get Started</a>
             <button class="hamburger" aria-label="Open menu">
                 <span></span>
                 <span></span>
@@ -310,14 +393,14 @@
         <nav class="mobile-nav" id="mobileNav">
             <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
             <ul>
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="index.html#about">About</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="mobile-cta">
-                <a href="index.html#contact" class="contact-btn">Get Started</a>
+                <a href="#contact" class="contact-btn">Get Started</a>
             </div>
         </nav>
     </header>
@@ -326,7 +409,7 @@
     <section class="portfolio-hero">
         <div>
             <h1>Our Portfolio</h1>
-            <p>Explore our creative work across weddings, music, social media, food, brands, real estate, events, and documentaries. Each project tells a unique story that resonates with audiences.</p>
+            <p>Explore our creative work across weddings, music, brands, real estate, events, and more. Our portfolio highlights unique stories and impactful content crafted to engage and inspire.</p>
         </div>
     </section>
 
@@ -658,5 +741,45 @@
     });
     </script>
     <script src="https://player.vimeo.com/api/player.js"></script>
+    <script src="script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var hamburger = document.querySelector('.hamburger');
+      var mobileNav = document.getElementById('mobileNav');
+      var mobileNavOverlay = document.getElementById('mobileNavOverlay');
+      if (hamburger && mobileNav && mobileNavOverlay) {
+        hamburger.addEventListener('click', function() {
+          hamburger.classList.toggle('active');
+          mobileNav.classList.toggle('active');
+          mobileNavOverlay.classList.toggle('active');
+          document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+        mobileNavOverlay.addEventListener('click', function() {
+          hamburger.classList.remove('active');
+          mobileNav.classList.remove('active');
+          mobileNavOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+        // Also close on nav link click
+        mobileNav.querySelectorAll('a').forEach(function(link) {
+          link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+          });
+        });
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+      }
+    });
+    </script>
 </body>
 </html> 
